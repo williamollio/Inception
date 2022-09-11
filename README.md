@@ -4,7 +4,7 @@ This repository aims to introduce you to the beautiful world of [Docker](https:/
 
 # Inception
 
-You can read the [subject](https://github.com/williamollio/Inception/blob/master/ressources/subject.pdf) beforehands to have an overview of the global scope. However the instruction for our session are written down on this readme.
+You can read the [subject](https://github.com/williamollio/Inception/blob/master/ressources/inception.pdf) beforehands to have an overview of the global scope. However the instruction for our session are written down on this readme.
 
 The goal of this project is to create a small infrastructure composed of several services - resulting of using the LEMP Stack. And this by using docker-compose.
 
