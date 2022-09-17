@@ -18,7 +18,7 @@ In order to do so, we have to create a network of containers accessible from the
 
 They must be built from the penultimate stable version of Alpine Linux, or from Debian Buster.
 
-Warning : pulling ready made images from DockerHub  is forbidden. You have to built by yourself the images.
+Warning : pulling ready made images from DockerHub  is forbidden. We have to built by yourself the images.
 
 ### Bind mounts
 
@@ -36,5 +36,5 @@ The rest of this project consists of setting up extra service running in separat
 - FTP server
 - Static webpage written in any language (but not PHP)
 - Adminer
-- other service of your choice
+- other service of our choice
 
