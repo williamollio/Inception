@@ -4,3 +4,6 @@ services:
     ports :
       - "443:443"
     restart: on-failure
+  wordpress :
+    build : srcs/requirements/wordpress
+    restart: on-failure

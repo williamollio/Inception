@@ -38,3 +38,10 @@ The rest of this project consists of setting up extra service running in separat
 - Adminer
 - other service of our choice
 
+
+- To log in the data as a specific user :
+mariadb -u example_user -p
+(option -p will prompt us for the password)
+- Then enter a SQL query as an example :
+SHOW_DATABASES;
+- Run the "exit" when needed.
