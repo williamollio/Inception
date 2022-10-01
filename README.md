@@ -45,3 +45,19 @@ mariadb -u example_user -p
 - Then enter a SQL query as an example :
 SHOW_DATABASES;
 - Run the "exit" when needed.
+
+The ```service``` command on linux allow us to start/stop/restart services and daemons.
+``` service [service_name] [action] ```
+
+```mysql -u root``` : to log in as root
+```mysql -u amigo -p``` : to log as user registered
+
+```mysqladmin -u root password abc1234``` : is also possible to set root password
+
+Queries :
+```use mysql```
+```Select user from mysql.user;```
+```SHOW DATABASES LIKE 'word%';```
+
+```docker-compose config```
+
