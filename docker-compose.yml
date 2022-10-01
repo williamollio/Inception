@@ -1,9 +1,23 @@
+version: '3'
+
 services:
   nginx :
     build : srcs/requirements/nginx
     ports :
       - "443:443"
     restart: on-failure
-  wordpress :
-    build : srcs/requirements/wordpress
+  mariadb :
+    container_name : mariadb
+    build :
+      context : ./srcs/requirements/mariadb
+      args:
+        - MYSQL_USER_NAME=${MYSQL_USER_NAME}
+        - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
+        - DATABASE_NAME=${DATABASE_NAME}
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    env_file : .env
     restart: on-failure
+volumes :
+  mysql-data:
