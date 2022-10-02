@@ -1,13 +1,13 @@
 FROM debian:buster
 
-ARG DATABASE_NAME=wordpress
-ARG MYSQL_USER_NAME=amigo
-ARG MYSQL_USER_PASSWORD=123
-ARG WORDPRESS_USER_NAME=william
-ARG WORDPRESS_ROOT_PASSWORD=123
-ARG DOMAIN_NAME=wollio.42.fr
-ARG BLOG_TITLE=mon_blog
-ARG ADMIN_EMAIL=williamollio98@gmail.com
+ARG DATABASE_NAME
+ARG MYSQL_USER_NAME
+ARG MYSQL_USER_PASSWORD
+ARG WORDPRESS_USER_NAME
+ARG WORDPRESS_ROOT_PASSWORD
+ARG DOMAIN_NAME
+ARG BLOG_TITLE
+ARG ADMIN_EMAIL
 
 RUN apt-get -y upgrade && \
 	apt-get -y update && \
@@ -15,11 +15,6 @@ RUN apt-get -y upgrade && \
 	apt-get install -y php && \
 	apt-get install -y sudo && \
 	apt-get install -y mariadb-client
-
-# RUN useradd william && \
-# 	usermod -aG sudo william
-
-# USER william
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 

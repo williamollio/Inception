@@ -20,6 +20,8 @@ RUN mkdir template
 COPY ./tools/index.html /template/index.html
 COPY ./tools/index.html /etc/nginx/sites-available/.
 
+EXPOSE 9000
+
 CMD ["nginx", "-g", "daemon off;"]
 
 # https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-debian-10
