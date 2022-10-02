@@ -2,8 +2,7 @@ FROM debian:buster
 
 RUN apt-get update -y && \
 	apt-get upgrade -y && \
-	apt-get install -y nginx \
-	apt-get install -y openssl
+	apt-get install -y openssl php-fpm nginx
 
 RUN openssl req -x509 \
 	-nodes \
@@ -13,12 +12,8 @@ RUN openssl req -x509 \
 	-out /etc/ssl/certs/nginx-selfsigned.crt \
 	-subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=example.com"
 
-COPY ./conf/nginx.conf /etc/nginx/sites-enabled/.
-
-RUN mkdir template
-
-COPY ./tools/index.html /template/index.html
-COPY ./tools/index.html /etc/nginx/sites-available/.
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default/.
+RUN ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
 
 EXPOSE 9000
 

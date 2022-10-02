@@ -11,10 +11,7 @@ ARG ADMIN_EMAIL
 
 RUN apt-get -y upgrade && \
 	apt-get -y update && \
-	apt-get install -y curl && \
-	apt-get install -y php && \
-	apt-get install -y sudo && \
-	apt-get install -y mariadb-client
+	apt-get install -y mariadb-client php php-fpm sudo curl
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
@@ -23,18 +20,17 @@ RUN chmod +x wp-cli.phar && \
 
 RUN wp-cli core download --allow-root
 
-# RUN wp-cli config create --dbname=DATABASE_NAME \
-# 	--dbuser=MYSQL_USER_NAME \
-# 	--dbpass=MYSQL_USER_PASSWORD \
-# 	--locale=en_GER \
-# 	--allow-root
+RUN wp-cli config create --dbname=DATABASE_NAME \
+	--dbuser=MYSQL_USER_NAME \
+	--dbpass=MYSQL_USER_PASSWORD \
+	--locale=en_GER \
+	--allow-root
 
-# RUN wp-cli core install --url=DOMAIN_NAME \
-# 	--title=BLOG_TITLE \
-# 	--admin_user=WORDPRESS_USER_NAME \
-# 	--admin_password=WORDPRESS_ROOT_PASSWORD \
-# 	--admin_email=ADMIN_EMAIL \
-# 	--allow-root
+RUN wp-cli core install --url=DOMAIN_NAME \
+	--title=BLOG_TITLE \
+	--admin_user=WORDPRESS_USER_NAME \
+	--admin_password=WORDPRESS_ROOT_PASSWORD \
+	--admin_email=ADMIN_EMAIL \
+	--allow-root
 
 EXPOSE 3306
-EXPOSE 9000

@@ -1,16 +1,6 @@
 version: '3'
 
 services:
-  nginx :
-    build : srcs/requirements/nginx
-    ports :
-      - "443:443"
-    restart: on-failure
-    networks:
-      - inception
-    depends_on:
-      - mariadb
-      - wordpress
   mariadb :
     container_name : mariadb
     build :
@@ -39,14 +29,31 @@ services:
         - DOMAIN_NAME=${DOMAIN_NAME}
         - BLOG_TITLE=${BLOG_TITLE}
         - ADMIN_EMAIL=${ADMIN_EMAIL}
+    volumes:
+      - wordpress-data:/var/www/html
     env_file : .env
     restart : on-failure
     networks:
       - inception
     depends_on:
       - mariadb
+    ports :
+      - "9000:9000"
+  nginx :
+    build : srcs/requirements/nginx
+    ports :
+      - "443:443"
+    restart: on-failure
+    networks:
+      - inception
+    depends_on:
+      - mariadb
+      - wordpress
+    volumes:
+      - wordpress-data:/var/www/html
 
 volumes :
   mysql-data:
+  wordpress-data:
 networks:
   inception:
