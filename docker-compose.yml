@@ -12,36 +12,38 @@ services:
         - DATABASE_NAME=${DATABASE_NAME}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
-      - mysql-data:/var/lib/mysql:deleguated
+      - mariadb-data:/var/lib/mysql:deleguated
     env_file : .env
     restart: on-failure
     networks:
       - inception
   wordpress:
+    depends_on:
+      - mariadb
     container_name : wordpress
     build :
       context : ./srcs/requirements/wordpress
       dockerfile : wordpress.Dockerfile
-      args:
-        - DATABASE_NAME=${DATABASE_NAME}
-        - MYSQL_USER_NAME=${MYSQL_USER_NAME}
-        - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
-        - WORDPRESS_USER_NAME=${WORDPRESS_USER_NAME}
-        - WORDPRESS_ROOT_PASSWORD=${WORDPRESS_ROOT_PASSWORD}
-        - DOMAIN_NAME=${DOMAIN_NAME}
-        - BLOG_TITLE=${BLOG_TITLE}
-        - ADMIN_EMAIL=${ADMIN_EMAIL}
+      # args:
+      #   - DATABASE_NAME=${DATABASE_NAME}
+      #   - MYSQL_USER_NAME=${MYSQL_USER_NAME}
+      #   - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
+      #   - WORDPRESS_USER_NAME=${WORDPRESS_USER_NAME}
+      #   - WORDPRESS_ROOT_PASSWORD=${WORDPRESS_ROOT_PASSWORD}
+      #   - DOMAIN_NAME=${DOMAIN_NAME}
+      #   - BLOG_TITLE=${BLOG_TITLE}
+      #   - ADMIN_EMAIL=${ADMIN_EMAIL}
+      #   - DB_HOSTNAME=${DB_HOSTNAME}
     volumes:
       - wordpress-data:/var/www/html:deleguated
     env_file : .env
     restart : on-failure
     networks:
       - inception
+  nginx :
     depends_on:
       - mariadb
-    ports :
-      - "9000:9000"
-  nginx :
+      - wordpress
     build :
       context : srcs/requirements/nginx
       dockerfile : nginx.Dockerfile
@@ -50,14 +52,11 @@ services:
     restart: on-failure
     networks:
       - inception
-    depends_on:
-      - mariadb
-      - wordpress
     volumes:
       - wordpress-data:/var/www/html:deleguated
 
 volumes :
-  mysql-data:
+  mariadb-data:
   wordpress-data:
 networks:
   inception:
