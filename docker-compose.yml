@@ -5,13 +5,14 @@ services:
     container_name : mariadb
     build :
       context : ./srcs/requirements/mariadb
+      dockerfile : mariadb.Dockerfile
       args:
         - MYSQL_USER_NAME=${MYSQL_USER_NAME}
         - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
         - DATABASE_NAME=${DATABASE_NAME}
         - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql:deleguated
     env_file : .env
     restart: on-failure
     networks:
@@ -19,7 +20,8 @@ services:
   wordpress:
     container_name : wordpress
     build :
-      context : ./srcs/requirements/mariadb
+      context : ./srcs/requirements/wordpress
+      dockerfile : wordpress.Dockerfile
       args:
         - DATABASE_NAME=${DATABASE_NAME}
         - MYSQL_USER_NAME=${MYSQL_USER_NAME}
@@ -30,7 +32,7 @@ services:
         - BLOG_TITLE=${BLOG_TITLE}
         - ADMIN_EMAIL=${ADMIN_EMAIL}
     volumes:
-      - wordpress-data:/var/www/html
+      - wordpress-data:/var/www/html:deleguated
     env_file : .env
     restart : on-failure
     networks:
@@ -40,7 +42,9 @@ services:
     ports :
       - "9000:9000"
   nginx :
-    build : srcs/requirements/nginx
+    build :
+      context : srcs/requirements/nginx
+      dockerfile : nginx.Dockerfile
     ports :
       - "443:443"
     restart: on-failure
@@ -50,7 +54,7 @@ services:
       - mariadb
       - wordpress
     volumes:
-      - wordpress-data:/var/www/html
+      - wordpress-data:/var/www/html:deleguated
 
 volumes :
   mysql-data:
