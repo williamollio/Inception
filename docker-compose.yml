@@ -44,6 +44,7 @@ services:
     depends_on:
       - mariadb
       - wordpress
+    container_name: nginx
     build :
       context : srcs/requirements/nginx
       dockerfile : nginx.Dockerfile
