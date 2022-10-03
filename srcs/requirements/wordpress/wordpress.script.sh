@@ -1,11 +1,13 @@
 #!/bin/bash
 
+cd var/www/html
+
 wp-cli core download --allow-root
 
 wp-cli config create --dbname=$DATABASE_NAME \
 	--dbuser=$MYSQL_USER_NAME \
 	--dbpass=$MYSQL_USER_PASSWORD \
-	--dbhost=$DB_HOST \
+	--dbhost=$DB_HOSTNAME \
 	--locale=en_GER \
 	--allow-root
 
@@ -15,3 +17,5 @@ wp-cli core install --url=$DOMAIN_NAME \
 	--admin_password=$WORDPRESS_ROOT_PASSWORD \
 	--admin_email=$ADMIN_EMAIL \
 	--allow-root
+
+php-fpm7.3 -F
