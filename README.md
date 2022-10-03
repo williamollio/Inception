@@ -38,6 +38,7 @@ The rest of this project consists of setting up extra service running in separat
 - Adminer
 - other service of our choice
 
+Notes :
 
 - To log in the data as a specific user :
 mariadb -u example_user -p
