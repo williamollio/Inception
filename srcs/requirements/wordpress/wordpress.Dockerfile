@@ -2,7 +2,7 @@ FROM debian:buster
 
 RUN apt-get -y upgrade && \
 	apt-get -y update && \
-	apt-get install -y mariadb-client php php-fpm sudo curl
+	apt-get install -y mariadb-client php7.3-fpm php7.3-mysql sudo curl
 
 WORKDIR /var/www/html
 
@@ -14,6 +14,10 @@ RUN chmod +x wp-cli.phar && \
 COPY www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY wordpress.script.sh ./
 
+RUN chmod +x wordpress.script.sh
+
 EXPOSE 9000
+
+RUN mkdir /run/php
 
 ENTRYPOINT [ "./wordpress.script.sh" ]
