@@ -14,7 +14,7 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql:deleguated
     env_file : .env
-    restart: on-failure
+    restart: always
     networks:
       - inception
   wordpress:
@@ -24,16 +24,6 @@ services:
     build :
       context : ./srcs/requirements/wordpress
       dockerfile : wordpress.Dockerfile
-      # args:
-      #   - DATABASE_NAME=${DATABASE_NAME}
-      #   - MYSQL_USER_NAME=${MYSQL_USER_NAME}
-      #   - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
-      #   - WORDPRESS_USER_NAME=${WORDPRESS_USER_NAME}
-      #   - WORDPRESS_ROOT_PASSWORD=${WORDPRESS_ROOT_PASSWORD}
-      #   - DOMAIN_NAME=${DOMAIN_NAME}
-      #   - BLOG_TITLE=${BLOG_TITLE}
-      #   - ADMIN_EMAIL=${ADMIN_EMAIL}
-      #   - DB_HOSTNAME=${DB_HOSTNAME}
     volumes:
       - wordpress-data:/var/www/html:deleguated
     env_file : .env
@@ -42,7 +32,6 @@ services:
       - inception
   nginx :
     depends_on:
-      - mariadb
       - wordpress
     container_name: nginx
     build :
