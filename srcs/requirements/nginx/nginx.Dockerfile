@@ -10,12 +10,10 @@ RUN openssl req -x509 \
 	-newkey rsa:2048 \
 	-keyout /etc/ssl/private/nginx-selfsigned.key \
 	-out /etc/ssl/certs/nginx-selfsigned.crt \
-	-subj "/C=GB/ST=London/L=London/O=Global Security/OU=IT Department/CN=example.com"
+	-subj "/C=DE/ST=Münich/CN=wollio.42.fr"
 
 COPY ./conf/nginx.conf /etc/nginx/sites-available/default/.
-RUN ln -s /etc/nginx/sites-available/ /etc/nginx/sites-enabled/
 
-EXPOSE 9000
 
 CMD ["nginx", "-g", "daemon off;"]
 
