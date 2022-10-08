@@ -18,4 +18,6 @@ wp-cli core install --url=$DOMAIN_NAME \
 	--admin_email=$ADMIN_EMAIL \
 	--allow-root
 
+wp-cli user create ollio ollio@gmail.com --role=administrator --user_pass=123
+
 php-fpm7.3 -F
