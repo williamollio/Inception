@@ -47,6 +47,16 @@ services:
 
 volumes :
   mariadb-data:
+    driver : local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device : '/home/wollio/data'
   wordpress-data:
+    driver : local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device : '/home/wollio/data'
 networks:
   inception:
