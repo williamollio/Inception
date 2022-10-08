@@ -13,11 +13,11 @@ wp-cli config create --dbname=$DATABASE_NAME \
 
 wp-cli core install --url=$DOMAIN_NAME \
 	--title=$BLOG_TITLE \
-	--admin_user=$WORDPRESS_USER_NAME \
+	--admin_user=$WORDPRESS_ROOT_NAME \
 	--admin_password=$WORDPRESS_ROOT_PASSWORD \
 	--admin_email=$ADMIN_EMAIL \
 	--allow-root
 
-wp-cli user create ollio ollio@gmail.com --role=administrator --user_pass=123
+wp-cli user create $WORDPRESS_USER_NAME $USER_EMAIL --role=administrator --user_pass= $WORDPRESS_USER_PASSWORD --allow-root
 
 php-fpm7.3 -F
