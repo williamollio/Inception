@@ -51,12 +51,12 @@ volumes :
     driver_opts:
       type: 'none'
       o: 'bind'
-      device : '/home/wollio/data'
+      device : '/Users/wiliamollio/Documents/dev/42_projects/projects/inception/data'
   wordpress-data:
     driver : local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device : '/home/wollio/data'
+      device : '/Users/wiliamollio/Documents/dev/42_projects/projects/inception/data'
 networks:
   inception:

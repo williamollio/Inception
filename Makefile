@@ -12,6 +12,7 @@ clean :
 
 fclean :
 	sudo docker system prune -a -f --volumes
+	sudo docker volume rm srcs_mariadb-data && sudo docker volume rm srcs_wordpress-data
 
 ps :
 	sudo docker-compose -f ./srcs/docker-compose.yml ps
