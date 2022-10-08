@@ -18,6 +18,6 @@ wp-cli core install --url=$DOMAIN_NAME \
 	--admin_email=$ADMIN_EMAIL \
 	--allow-root
 
-wp-cli user create $WORDPRESS_USER_NAME $USER_EMAIL --role=administrator --user_pass= $WORDPRESS_USER_PASSWORD --allow-root
+wp-cli user create $WORDPRESS_USER_NAME $USER_EMAIL --role=administrator --user_pass=$WORDPRESS_USER_PASSWORD --allow-root
 
 php-fpm7.3 -F
