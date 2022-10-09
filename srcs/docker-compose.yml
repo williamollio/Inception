@@ -47,18 +47,16 @@ services:
 
 volumes :
   mariadb-data:
-    # external: false
     driver : local
     driver_opts:
-      type: 'none'
-      o: 'bind'
-      device : '/Users/wiliamollio/Documents/dev/42_projects/projects/inception/data/mariadb'
+      type: none
+      o: bind
+      device : /home/wollio/data/mariadb
   wordpress-data:
-    # external: false
     driver : local
     driver_opts:
-      type: 'none'
-      o: 'bind'
-      device : '/Users/wiliamollio/Documents/dev/42_projects/projects/inception/data/wordpress'
+      type: none
+      o: bind
+      device : /home/wollio/data/wordpress
 networks:
   inception:

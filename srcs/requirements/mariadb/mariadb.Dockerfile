@@ -19,7 +19,6 @@ RUN service mysql start && \
 
 RUN service mysql stop
 
-# just for information purpose
 EXPOSE 3306
 
 ENTRYPOINT [ "mysqld_safe" ]
