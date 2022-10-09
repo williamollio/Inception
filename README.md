@@ -30,35 +30,5 @@ These are the persistent data :
 
 Give the ability to the containers to communication between each other.
 
-### Bonus
-The rest of this project consists of setting up extra service running in separate containers :
-- redis cache
-- FTP server
-- Static webpage written in any language (but not PHP)
-- Adminer
-- other service of our choice
-
-Notes :
-
-- To log in the data as a specific user :
-mariadb -u example_user -p
-(option -p will prompt us for the password)
-- Then enter a SQL query as an example :
-SHOW_DATABASES;
-- Run the "exit" when needed.
-
-The ```service``` command on linux allow us to start/stop/restart services and daemons.
-``` service [service_name] [action] ```
-
-```mysql -u root``` : to log in as root
-```mysql -u amigo -p``` : to log as user registered
-
-```mysqladmin -u root password abc1234``` : is also possible to set root password
-
-Queries :
-```use mysql```
-```Select user from mysql.user;```
-```SHOW DATABASES LIKE 'word%';```
-
-```docker-compose config```
-
+### Warning
+For make it work you need to have the two following folders in the file system on your host machine : /home/wollio/data/wordpress and /home/wollio/data/mariadb
