@@ -25,3 +25,6 @@ wordpress :
 
 nginx :
 	sudo docker-compose -f ./srcs/docker-compose.yml up nginx
+
+info :
+	sudo docker system df
